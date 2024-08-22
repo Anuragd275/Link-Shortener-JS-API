@@ -11,9 +11,13 @@ app.use(express.json());
 // Middleware to parse URL-encoded bodies (from forms)
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+    res.send("Welcome to Home page")    
+})
+
 
 app.get("/hi", (req, res) => {
-    console.log("Hello!")
+    res.send("Hi page!!")
 })
 
 
