@@ -24,6 +24,32 @@ This repository contains code to generate short_id for your long urls the genera
 
 ---
 
+### Create Short ID [POST]
+
+---
+
+Visit `localhost:3000/short` and pass your long_url: `"https://example.com"` with `POST` Method
+
+`curl --location 'https://link-shortener-js-api.vercel.app/short' \
+--header 'Content-Type: application/json' \
+--data '{"long_url": "https://www.example.com"}'`
+
+![POST](sample/POST.png)
+
+----
+
+### Retrieve long_url from shortID [GET]
+
+---
+
+Visit `localhost:3000/<shortID>` and you'll receive your long url or
+
+`curl --location 'https://localhost:3000/<shortID>'`
+
+![GET](sample/GET.png)
+
+---
+
 ### Contributions
 
 Contributions are most welcome, if you find any bugs or want to request any feature, just raise a Issue/PR suitably.
