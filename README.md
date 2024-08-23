@@ -55,6 +55,6 @@ Visit `localhost:3000/<shortID>` and you'll receive your long url or
 Contributions are most welcome, if you find any bugs or want to request any feature, just raise a Issue/PR suitably.
 
 ---
-![JS](https://img.shields.io/badge/Built_with-JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E)
+![JS](https://img.shields.io/badge/Built_with-JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E&labelColor=000000)
 ![MongoDB](https://img.shields.io/badge/-MongoDB-44883e?style=for-the-badge&logo=MongoDB&logoColor=44883e&labelColor=000000)
 ![Vercel](https://img.shields.io/badge/Powered_By-Vercel-FFFFFF?style=for-the-badge&logo=Vercel&logoColor=FFFFFF&labelColor=000000)
