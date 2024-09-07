@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link Shortener API Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Inter, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+      }
+      code {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 2px 4px;
+        font-family: Consolas, monospace;
+      }
+      pre {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        overflow-x: auto;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Link Shortener JS API</h1>
+    <p>
+      A REST API built with JavaScript and Express to short your links and also
+      with the feature to connect your own domain to make your own personal URL
+      Shortener
+    </p>
+
+    <h1>API Documentation</h1>
+
+    <p>
+      Welcome to our API documentation. This API can short your long URLs. Below
+      you'll find details on available endpoints, request formats, and example
+      responses.
+    </p>
+
+    <h2>Base URL</h2>
+
+    <p>All API requests should be made to:</p>
+
+    <pre><code>https://link-shortener-js-api.vercel.app/</code></pre>
+
+    <h2>Endpoints</h2>
+
+    <!-- <h3>1. List Tasks</h3>
+
+    <p>Retrieve a list of all tasks.</p>
+
+    <ul>
+      <li><strong>URL</strong>: <code>/tasks</code></li>
+      <li><strong>Method</strong>: <code>GET</code></li>
+      <li><strong>Parameters</strong>: None</li>
+    </ul>
+
+    <h4>Example Request</h4>
+
+    <pre><code>curl -X GET https://api.example.com/v1/tasks \
+  -H "Authorization: Bearer YOUR_API_KEY"</code></pre>
+
+    <h4>Example Response</h4>
+
+    <pre><code>{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Complete API documentation",
+      "status": "in_progress"
+    },
+    {
+      "id": 2,
+      "title": "Review pull requests",
+      "status": "todo"
+    }
+  ]
+}</code></pre> -->
+
+    <h3>1. Short a long URL</h3>
+
+    <p>Pass your long URL to create a short url</p>
+
+    <ul>
+      <li><strong>URL</strong>: <code>/short</code></li>
+      <li><strong>Method</strong>: <code>POST</code></li>
+      <li>
+        <strong>Parameters</strong>:
+        <ul>
+          <li>
+            <code>long_url</code> (string, required): Long URL that you want to
+            short
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Example Request</h4>
+
+    <pre><code>curl --location 'https://link-shortener-js-api.vercel.app/short' \ 
+    --header 'Content-Type: application/json' \
+    --data '{"long_url": "https://www.example.com"}'</code></pre>
+
+    <h4>Example Response</h4>
+
+    <pre><code>{
+    "shortID": "cdb4d88d",
+    "longURL": "https://www.example.com",
+    "_id": "66c7855b76e819ccb7098116",
+    "__v": 0
+}</code></pre>
+
+    <h3>2. Retrieve a longURL</h3>
+
+    <p>Get the value of long URL by its shortID</p>
+
+    <ul>
+      <li><strong>URL</strong>: <code>/{shortID}</code></li>
+      <li><strong>Method</strong>: <code>GET</code></li>
+      <li>
+        <strong>Parameters</strong>:
+        <ul>
+          <li>
+            <code>shortID</code> (string, optional): The shortID of the longURL
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Example Request</h4>
+
+    <pre><code>curl --location 'https://localhost:3000/{shortID}</code></pre>
+
+    <h4>Example Response</h4>
+
+    <pre><code>https://www.example.com</code></pre>
+
+    <h2>Error Handling</h2>
+
+    <p>
+      The API uses conventional HTTP response codes to indicate the success or
+      failure of an API request. Codes in the 2xx range indicate success, codes
+      in the 4xx range indicate an error that failed given the information
+      provided (e.g., a required parameter was omitted), and codes in the 5xx
+      range indicate an error with our servers.
+    </p>
+
+    <h3>Example Error Response</h3>
+
+    <pre><code>{
+  "error": {
+    "code": 400,
+    "message": "Invalid request: Missing required field 'title'"
+  }
+}</code></pre>
+  </body>
+</html>
