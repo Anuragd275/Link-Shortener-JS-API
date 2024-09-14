@@ -3,9 +3,15 @@ const createHash = require("./middleware/hasher");
 const isURLThere = require("./middleware/validate_url")
 const verifyShortID = require("./middleware/verifyShortID");
 const path = require('path');
-
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors({
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'] // Allow the 'Content-Type' header
+}));
 
 require('dotenv').config();
 
