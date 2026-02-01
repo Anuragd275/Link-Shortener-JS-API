@@ -7,6 +7,9 @@ const cors = require('cors');
 
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 app.use(cors({
     origin: '*', // Allow all origins
     methods: ['GET', 'POST'],
