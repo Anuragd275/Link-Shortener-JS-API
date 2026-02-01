@@ -3,7 +3,7 @@ html(lang="en" class="dark")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Link Shortener API Docs
+    title= title
 
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
@@ -20,10 +20,6 @@ html(lang="en" class="dark")
       };
 
     script.
-      tailwind.config = {
-        darkMode: 'class',
-      };
-
       function toggleDarkMode() {
         const html = document.documentElement;
         html.classList.toggle("dark");
@@ -43,34 +39,39 @@ html(lang="en" class="dark")
         document.documentElement.classList.remove("dark");
       }
 
-  body.bg-white.dark:bg-gray-900.text-gray-900.dark:text-gray-100.transition-colors.duration-300(style="font-family: Inter, sans-serif;")
+  body(
+    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+    style="font-family: Inter, sans-serif;"
+  )
     .max-w-4xl.mx-auto.p-6
 
-      button.fixed.top-4.right-4.p-2.bg-gray-200.dark:bg-gray-700.rounded-full.hover:bg-gray-300.dark:hover:bg-gray-600.transition-colors(
+      button.fixed.top-4.right-4.p-2.rounded-full.transition-colors(
+        class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
         onclick="toggleDarkMode()"
         aria-label="Toggle Dark Mode"
       ) 🌓
 
       h1.text-4xl.font-bold.mb-4 Link Shortener JS API
-      p.text-lg.text-gray-700.dark:text-gray-300.mb-8
+      p.text-lg.mb-8(class="text-gray-700 dark:text-gray-300")
         | A REST API built with JavaScript and Express to shorten your links. It also supports connecting your own domain
         |  to create a personal URL shortener.
 
       h1.text-3xl.font-bold.mb-6 API Documentation
-      p.text-gray-700.dark:text-gray-300.mb-8
+      p.mb-8(class="text-gray-700 dark:text-gray-300")
         | Welcome to our API documentation. This API can shorten your long URLs. Below you'll find details on available
         |  endpoints, request formats, and example responses.
 
       h2.text-2xl.font-bold.mb-4 Base URL
-      p.text-gray-700.dark:text-gray-300.mb-4 All API requests should be made to:
-      pre.bg-gray-100.dark:bg-gray-800.p-4.rounded-lg.mb-8
+      p.mb-4(class="text-gray-700 dark:text-gray-300") All API requests should be made to:
+      pre.mb-8.rounded-lg.p-4(class="bg-gray-100 dark:bg-gray-800")
         code https://link-shortener-js-api.vercel.app/
 
       h2.text-2xl.font-bold.mb-6 Endpoints
 
       h3.text-xl.font-bold.mb-4 1. Short a long URL
-      p.text-gray-700.dark:text-gray-300.mb-4 Pass your long URL to create a short URL.
-      ul.list-disc.list-inside.text-gray-700.dark:text-gray-300.mb-6
+      p.mb-4(class="text-gray-700 dark:text-gray-300") Pass your long URL to create a short URL.
+
+      ul.list-disc.list-inside.mb-6(class="text-gray-700 dark:text-gray-300")
         li
           strong URL:
           |  /short
@@ -85,14 +86,14 @@ html(lang="en" class="dark")
               |  (string, required): Long URL that you want to shorten.
 
       h4.text-lg.font-bold.mb-4 Example Request
-      pre.bg-gray-100.dark:bg-gray-800.p-4.rounded-lg.mb-6
+      pre.mb-6.rounded-lg.p-4(class="bg-gray-100 dark:bg-gray-800")
         code.
           curl --location 'https://link-shortener-js-api.vercel.app/short' \
           --header 'Content-Type: application/json' \
           --data '{"long_url": "https://www.example.com"}'
 
       h4.text-lg.font-bold.mb-4 Example Response
-      pre.bg-gray-100.dark:bg-gray-800.p-4.rounded-lg.mb-8
+      pre.mb-8.rounded-lg.p-4(class="bg-gray-100 dark:bg-gray-800")
         code.
           {
             "shortID": "cdb4d88d",
@@ -102,8 +103,9 @@ html(lang="en" class="dark")
           }
 
       h3.text-xl.font-bold.mb-4 2. Retrieve a longURL
-      p.text-gray-700.dark:text-gray-300.mb-4 Get the value of the long URL by its shortID.
-      ul.list-disc.list-inside.text-gray-700.dark:text-gray-300.mb-6
+      p.mb-4(class="text-gray-700 dark:text-gray-300") Get the value of the long URL by its shortID.
+
+      ul.list-disc.list-inside.mb-6(class="text-gray-700 dark:text-gray-300")
         li
           strong URL:
           |  /{shortID}
@@ -118,21 +120,21 @@ html(lang="en" class="dark")
               |  (string, optional): The shortID of the longURL.
 
       h4.text-lg.font-bold.mb-4 Example Request
-      pre.bg-gray-100.dark:bg-gray-800.p-4.rounded-lg.mb-6
+      pre.mb-6.rounded-lg.p-4(class="bg-gray-100 dark:bg-gray-800")
         code curl --location 'https://localhost:3000/{shortID}'
 
       h4.text-lg.font-bold.mb-4 Example Response
-      pre.bg-gray-100.dark:bg-gray-800.p-4.rounded-lg.mb-8
+      pre.mb-8.rounded-lg.p-4(class="bg-gray-100 dark:bg-gray-800")
         code https://www.example.com
 
       h2.text-2xl.font-bold.mb-6 Error Handling
-      p.text-gray-700.dark:text-gray-300.mb-8
+      p.mb-8(class="text-gray-700 dark:text-gray-300")
         | The API uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the
         |  2xx range indicate success, codes in the 4xx range indicate an error due to invalid input, and codes in the 5xx
         |  range indicate server-side errors.
 
       h3.text-xl.font-bold.mb-4 Example Error Response
-      pre.bg-gray-100.dark:bg-gray-800.p-4.rounded-lg.mb-8
+      pre.mb-8.rounded-lg.p-4(class="bg-gray-100 dark:bg-gray-800")
         code.
           {
             "error": {
