@@ -24,9 +24,9 @@ app.use(express.json());
 // Middleware to parse URL-encoded bodies (from forms)
 app.use(express.urlencoded({ extended: true }));
 
-// Serve the HTML file
+// Serve the pug file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.render('index', {title: 'Link Shortener API Docs'})
 });
 
 app.get("/hi", (req, res) => {
