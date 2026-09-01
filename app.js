@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve the pug file
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Link Shortener API Docs'})
+    res.render('index', { title: 'Link Shortener API Docs' })
 });
 
 app.get("/hi", (req, res) => {
@@ -34,17 +34,76 @@ app.get("/hi", (req, res) => {
 })
 
 
-app.get("/:short_id", async(req, res) => {
+// app.get("/:short_id", async(req, res) => {
 
-    const short_id = req.params.short_id
-    const long_url = await verifyShortID(short_id)
+//     const short_id = req.params.short_id
+//     const long_url = await verifyShortID(short_id)
 
-    res.send(long_url)
-})
+//     res.send(long_url)
+// })
 
+app.get("/:short_id", async (req, res) => {
+    const short_id = req.params.short_id;
+    const long_url = await verifyShortID(short_id);
+
+    // Guard: missing, or not a valid absolute URL
+    let isValid = false;
+    if (long_url) {
+        try {
+            new URL(long_url); // throws if not a valid absolute URL
+            isValid = true;
+        } catch (_) {
+            isValid = false;
+        }
+    }
+
+    if (!isValid) {
+        return res.status(404).send("Short URL not found");
+    }
+
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Redirecting...</title>
+            <meta http-equiv="refresh" content="5;url=${long_url}">
+            <style>
+                body {
+                    font-family: sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                    margin: 0;
+                    text-align: center;
+                }
+                a { color: #2563eb; }
+            </style>
+        </head>
+        <body>
+            <h2>Redirecting you in <span id="countdown">5</span> seconds...</h2>
+            <p>If you are not redirected automatically, <a href="${long_url}">click here</a>.</p>
+            <script>
+                let seconds = 5;
+                const countdownEl = document.getElementById('countdown');
+                const timer = setInterval(() => {
+                    seconds--;
+                    countdownEl.textContent = seconds;
+                    if (seconds <= 0) {
+                        clearInterval(timer);
+                        window.location.href = "${long_url}";
+                    }
+                }, 1000);
+            </script>
+        </body>
+        </html>
+    `);
+});
 // POST METHOD, GIVE LONG URL RECEIVE SHORT URL
 
-app.post("/short", async(req, res) => {
+app.post("/short", async (req, res) => {
     console.log(req.body);
     result = createHash(req.body.long_url)
     console.log(result)
